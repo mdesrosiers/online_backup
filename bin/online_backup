@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'online_backup/runner'
+
+runner = OnlineBackup::Runner.new(ARGV)
+runner.run
