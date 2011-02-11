@@ -3,13 +3,8 @@ require 'optparse'
 module OnlineBackup
   class Options
 
-    attr_reader :directory
-    attr_reader :bucket
+    attr_accessor :directory, :bucket
 
-    def initialize(argv)
-      parse(argv)
-    end
-    
     def parse(argv)
       OptionParser.new do |opts|
         opts.banner = "Usage: online_backup.rb [options]"

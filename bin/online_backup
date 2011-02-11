@@ -2,5 +2,4 @@
 
 require 'online_backup/runner'
 
-runner = OnlineBackup::Runner.new(ARGV)
-runner.run
+OnlineBackup::Runner.new(OnlineBackup::Options.new(ARGV)).run
