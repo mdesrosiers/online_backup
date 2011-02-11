@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+require 'online_backup/options'
 require 'online_backup/runner'
 
-OnlineBackup::Runner.new(OnlineBackup::Options.new(ARGV)).run
+options = OnlineBackup::Options.new
+options.parse(ARGV)
+
+OnlineBackup::Runner.new(options).run

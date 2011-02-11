@@ -12,7 +12,12 @@ module OnlineBackup
 
       Store.create_bucket(@options.bucket) unless Store.bucket_exists? @options.bucket
 
-      Dir.glob(@options.directory + "/**") { |f| Store.save f unless File.directory? f }
+      unless (File.directory? @options.directory)
+        STDERR.puts "#{@options.directory} is not a directory"
+        exit(-1)
       end
-    end    
+
+      Dir.glob(@options.directory + "/**") { |f| Store.save(f, @options.bucket) unless File.directory? f }
+    end
   end
+end
