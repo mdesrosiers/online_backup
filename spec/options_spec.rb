@@ -17,7 +17,7 @@ describe OnlineBackup::Options do
   end
 
   it "should set the required attributes" do
-    directory = "/tmp/test"
+    directory = "."
     bucket_name = "bucket"
 
     subject.parse(["-d", directory, "-b", bucket_name])

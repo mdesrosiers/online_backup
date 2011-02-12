@@ -11,6 +11,11 @@ module OnlineBackup
 
         opts.on("-d", "--directory [DIRECTORY]", "Directory to backup") do |d|
           @directory = d
+
+          unless (File.directory? @directory)
+            STDERR.puts "#{@directory} is not a directory"
+            exit(-1)
+          end
         end
 
         opts.on("-b", "--bucket [BUCKET]", "Bucket name") do |b|
