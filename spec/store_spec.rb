@@ -8,9 +8,9 @@ describe OnlineBackup::Store do
       file = 'test.txt'
 
       OnlineBackup::Store.should_receive(:open).with(file).and_return(:file)
-      AWS::S3::S3Object.should_receive(:store).with(file, :file, :bucket).and_return(:s3_response)
+      AWS::S3::S3Object.should_receive(:store).with(file, :file, anything()).and_return(:s3_response)
 
-      OnlineBackup::Store.save(file, :bucket).should eq(:s3_response)
+      OnlineBackup::Store.save(file).should eq(:s3_response)
     end
   end
 

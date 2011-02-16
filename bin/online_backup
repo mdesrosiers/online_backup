@@ -4,6 +4,6 @@ require 'online_backup/options'
 require 'online_backup/runner'
 
 options = OnlineBackup::Options.new
-options.parse(ARGV)
+options.parse ARGV
 
 OnlineBackup::Runner.new(options).run

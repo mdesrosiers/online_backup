@@ -8,22 +8,18 @@ describe OnlineBackup::Options do
 
   describe "#parse" do
     it "should exit cleanly if no options are provided" do
-      lambda { subject.parse([]) }.should raise_error SystemExit
+      lambda { subject.parse [] }.should raise_error SystemExit
     end
 
     it "should exit cleanly if -h is provided" do
-      lambda { subject.parse(["-h"]) }.should raise_error SystemExit
+      lambda { subject.parse ["-h"] }.should raise_error SystemExit
     end
   end
 
   it "should set the required attributes" do
-    directory = "."
-    bucket_name = "bucket"
-
-    subject.parse(["-d", directory, "-b", bucket_name])
-
-    subject.directory.should eq(directory)
-    subject.bucket.should eq(bucket_name)
+    subject.parse ["-d", "~/.online_backup", ".", "/tmp"]
+    subject.data_file.should eq("~/.online_backup")
+    subject.directories.should eq([".", "/tmp"])
   end
 
   after(:all) do
