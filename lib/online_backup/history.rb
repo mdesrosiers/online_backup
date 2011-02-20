@@ -10,16 +10,26 @@ module OnlineBackup
       load
     end
 
-    def get(key)
-      @entries[key]
+    def get(file)
+      @entries[file]
     end
 
-    def contains?(key)
-      not get(key).nil?
+    def contains?(file)
+      not get(file).nil?
     end
 
-    def set(key, value)
-      @entries[key] = value
+    def outdated?(file)
+      modified_time = File.mtime(file)
+      backup_time = Time.parse(get(file)[:date])
+      modified_time > backup_time
+    end
+
+    def update(file, response)
+      set(file, {etag: response["etag"], date: response["date"]})
+    end
+
+    def set(file, value)
+      @entries[file] = value
     end
 
     def dump

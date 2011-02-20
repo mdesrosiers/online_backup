@@ -15,7 +15,7 @@ describe OnlineBackup::Runner do
       OnlineBackup::Store.should_receive(:save).exactly(options.directories.length).times.and_return Hash.new
       history = mock("History")
       history.stub!(:contains?)
-      history.stub!(:set)
+      history.stub!(:update)
       history.stub!(:dump)
       OnlineBackup::History.stub!(:new).and_return history
 
@@ -29,7 +29,7 @@ describe OnlineBackup::Runner do
       OnlineBackup::Store.should_not_receive(:save)
       history = mock("History")
       history.stub!(:contains?)
-      history.stub!(:set)
+      history.stub!(:update)
       history.stub!(:dump)
       OnlineBackup::History.stub!(:new).and_return history
 
